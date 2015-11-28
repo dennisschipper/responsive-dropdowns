@@ -1,0 +1,117 @@
+/* line 4, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+body {
+  background: #E8F1F5;
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8); }
+
+/* line 12, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+/* line 15, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+ul {
+  display: block;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 100%; }
+  /* line 22, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  ul li {
+    display: inline-block; }
+
+/* line 27, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+p {
+  font-size: 0.9em; }
+
+/* line 34, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+.activate-dropdown {
+  position: relative;
+  display: inline-block; }
+
+/* line 40, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+a.button {
+  display: inline-block;
+  background: rgba(117, 187, 205, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 11px;
+  outline: 0;
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+  border-radius: 2px; }
+  /* line 52, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  a.button:hover {
+    background: rgba(117, 187, 205, 0.7); }
+
+/* line 60, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+.dropdown-container {
+  position: absolute;
+  top: 100%;
+  margin-top: 5px;
+  left: 0px;
+  height: 0px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+
+/* line 78, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+.dropdown {
+  background: #fff;
+  width: 400px;
+  left: 0px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s ease; }
+  /* line 86, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  .dropdown a {
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+    padding: 15px 15px;
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease; }
+    /* line 93, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+    .dropdown a:hover {
+      background: rgba(0, 0, 0, 0.02);
+      color: rgba(0, 0, 0, 0.75); }
+  /* line 99, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  .dropdown ul {
+    display: block;
+    list-style: none;
+    padding: 0px;
+    margin: 0px; }
+  /* line 106, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  .dropdown li {
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+
+@media (max-width: 640px) {
+  /* line 117, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  .activate-dropdown {
+    display: block;
+    width: 100%;
+    top: 0px;
+    left: 0px; }
+
+  /* line 124, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  a.button {
+    display: block;
+    width: 100%;
+    padding-left: 15px; }
+
+  /* line 130, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  .dropdown-container {
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 0;
+    height: 0px;
+    box-shadow: none; }
+
+  /* line 139, /Users/dennis/Projects/Mine/js-tests/source/stylesheets/all.scss */
+  .dropdown {
+    width: 100%; } }
