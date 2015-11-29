@@ -1,19 +1,22 @@
+// Some presentation styles
+@charset "utf-8";
+
 body {
   background: #E8F1F5;
   font-family: 'Montserrat', sans-serif;
   padding: 10px;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.8); }
+  color: rgba(0, 0, 0, 0.8);
+}
 
-*, *:before, *:after {
-  box-sizing: border-box; }
+*, *:before, *:after { box-sizing: border-box; }
 
-p {
-  font-size: 0.8em; }
+p { font-size: 0.8em; }
 
 .activate-dropdown {
   position: relative;
-  display: inline-block; }
+  display: inline-block;
+}
 
 .button, a.button {
   display: inline-block;
@@ -25,9 +28,10 @@ p {
   outline: 0;
   transition: all 0.5s ease;
   text-transform: uppercase;
-  border-radius: 2px; }
-  .button:hover, a.button:hover {
-    background: rgba(117, 187, 205, 0.7); }
+  border-radius: 2px;
+
+  &:hover { background: rgba(117, 187, 205, 0.7); }
+}
 
 .dropdown-container {
   position: absolute;
@@ -37,7 +41,12 @@ p {
   height: 0px;
   overflow: hidden;
   transition: all 0.5s ease;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  // Future proofing
+  &.expanded { }
+}
+
+
 
 .dropdown {
   background: #fff;
@@ -45,47 +54,60 @@ p {
   left: 0px;
   border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-  transition: all 0.5s ease; }
-  .dropdown ul {
+  transition: all 0.5s ease;
+
+  ul {
     display: block;
     list-style: none;
     padding: 0px;
-    margin: 0px; }
-  .dropdown li {
+    margin: 0px;
+  }
+
+  li {
     display: block;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
-  .dropdown a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  a {
     text-decoration: none;
     font-size: 12px;
     display: block;
     padding: 15px 15px;
     color: rgba(0, 0, 0, 0.5);
-    transition: all 0.5s ease; }
-    .dropdown a:hover {
+    transition: all 0.5s ease;
+    &:hover {
       background: rgba(0, 0, 0, 0.02);
-      color: rgba(0, 0, 0, 0.75); }
+      color: rgba(0, 0, 0, 0.75);
+    }
+  }
 
+
+}
+
+// Mobile styles
 @media (max-width: 640px) {
   .activate-dropdown {
     display: block;
     width: 100%;
     top: 0px;
-    left: 0px; }
+    left: 0px;
+  }
 
   .button {
     display: block;
     width: 100%;
-    padding-left: 15px; }
+    padding-left: 15px;
+  }
 
+  // Remove the absolute position on the container so it pushes down content on mobile
   .dropdown-container {
     display: block;
     width: 100%;
     position: relative;
     top: 0;
     height: 0px;
-    box-shadow: none; }
+    box-shadow: none;
+  }
 
-  .dropdown {
-    width: 100%; } }
-
-/*# sourceMappingURL=all.css.map */
+  .dropdown { width: 100%; }// Set the dropdown to the full mobile width
+}
