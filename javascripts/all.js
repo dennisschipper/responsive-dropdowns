@@ -6,7 +6,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return dropdown_buttons;
   }
 
-  // Find the dropdown
+  // All the dropdowns
+  var dropdowns = document.getElementsByClassName("dropdown-container");
+  function hideActiveDropdowns(name) {
+    for(var i = 0; i < name.length; i++) {
+      name[i].style.height = "0px"
+      name[i].className = "dropdown-container"
+    }
+  }
+
+  // Find the associated dropdown to what we clicked
   function find_dropdown(item) {
     container = item.parentNode;// Find the parent
     var dropdown;// Add the var
@@ -24,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // Toggle the class
     // We could be managing the toggle based on dropdown.style.height but the class switch is future proofing for extra interactions
     if (dropdown.className == "dropdown-container") {
+      hideActiveDropdowns(dropdowns);
       dropdown.className = "dropdown-container expanded"
       dropdown.style.height = dropdown_height + "px";
     } else {
