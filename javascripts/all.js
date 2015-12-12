@@ -1,56 +1,65 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-  // Find all the buttons that activate dropdowns (.dropdown-button in this case)
-  function find_dropdown_buttons(buttonClass) {
-    var dropdown_buttons = document.getElementsByClassName(buttonClass);
-    return dropdown_buttons;
+  var items = [];
+  var Item = function(item) {
+    this.item = item
+    this.dropdown = findDropdown(item);
+    this.button = findButton(item);
+    this.button.content = this.dropdown
   }
 
-  // All the dropdowns
-  var dropdowns = document.getElementsByClassName("dropdown-container");
-  function hideActiveDropdowns(name) {
-    for(var i = 0; i < name.length; i++) {
-      name[i].style.height = "0px"
-      name[i].className = "dropdown-container"
-    }
-  }
-
-  // Find the associated dropdown to what we clicked
-  function find_dropdown(item) {
-    container = item.parentNode;// Find the parent
-    var dropdown;// Add the var
-
-    // Check the children of the parent, and find the actual dropdown
-    for (var i = 0; i < container.children.length; i++) {
-      if (container.children[i].className == "dropdown-container" || container.children[i].className == "dropdown-container expanded" ) {
-        dropdown = container.children[i];
+  // Find a dropdown inside an ".activate-dropdown"
+  function findDropdown(item){
+    var children = item.children;
+    for (var i = 0; i < children.length; i++) {
+      if (children[i].className.indexOf("dropdown-container") > -1) {
+        return children[i];
       }
     }
-    // Find the height of the dropdown
-    // Might be better to check for .dropdown, but for now we'll just grab the first element in the container
-    var dropdown_height = dropdown.children[0].offsetHeight;
+  }
 
-    // Toggle the class
-    // We could be managing the toggle based on dropdown.style.height but the class switch is future proofing for extra interactions
-    if (dropdown.className == "dropdown-container") {
-      hideActiveDropdowns(dropdowns);
-      dropdown.className = "dropdown-container expanded"
-      dropdown.style.height = dropdown_height + "px";
-    } else {
-      dropdown.className = "dropdown-container"
-      dropdown.style.height = "0" + "px";
+  // Find a button inside an ".activate-dropdown"
+  function findButton(item){
+    var children = item.children;
+    for (var i = 0; i < children.length; i++) {
+      if (children[i].className.split(" ").indexOf("dropdown-button") > -1) {
+        return children[i];
+      }
     }
   }
 
-  // Find all the buttons
-  var buttons = find_dropdown_buttons("dropdown-button");
-  // Add click event to all the buttons
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function(event){
+  function toggleClass(item, new_class){
+    var c = item.className.split(" ");
+
+    // Check for an .active class
+    if (c.indexOf(new_class) > -1) {
+      position = c.indexOf(new_class);
+      c[position] = ""
+      item.className = c.join(" ");
+      item.style.height = "0px"
+
+    } else {
+      c.push(new_class);
+      item.className = c.join(" ");
+      height = item.children[0].offsetHeight;
+      item.style.height = height + "px";
+    }
+
+  }
+
+  // Find all the dropdowns
+  var x = document.getElementsByClassName("activate-dropdown");
+  for (var i = 0; i < x.length; i++ ) {
+    var y = new Item(x[i])
+    items.push(y)
+  }
+
+  // Add the click event
+  for (var i = 0; i < items.length; i++) {
+    items[i].button.addEventListener("click", function(event){
       event.preventDefault();
-      // Search the parent node for a dropdown and activate it
-      find_dropdown(this);
+      toggleClass(this.content, "active")
     })
   }
-})
-;
+
+});
