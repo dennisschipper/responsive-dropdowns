@@ -1,33 +1,25 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
   var items = [];
+  // Create an object to stick or related dropdown elements (button, dropdown content)
   var Item = function(item) {
     this.item = item
     this.dropdown = findDropdown(item);
     this.button = findButton(item);
-    this.button.content = this.dropdown
+    this.button.content = this.dropdown;
   }
 
-  // Find a dropdown inside an ".activate-dropdown"
+  // Find the .dropdown-container inside an item (assuming there's not multiple ones for now, might change in the future to make it more bulletproof)
   function findDropdown(item){
-    var children = item.children;
-    for (var i = 0; i < children.length; i++) {
-      if (children[i].className.indexOf("dropdown-container") > -1) {
-        return children[i];
-      }
-    }
+    return item.querySelectorAll(".dropdown-container")[0];
   }
 
-  // Find a button inside an ".activate-dropdown"
+  // Find a button inside an ".activate-dropdown" (again, we assume there's only one button in there, so we only target the first item in the returned nodelist)
   function findButton(item){
-    var children = item.children;
-    for (var i = 0; i < children.length; i++) {
-      if (children[i].className.split(" ").indexOf("dropdown-button") > -1) {
-        return children[i];
-      }
-    }
+    return item.querySelectorAll(".dropdown-button")[0];
   }
 
+  // Toggles class between active/not active
   function toggleClass(item, new_class){
     var c = item.className.split(" ");
 
@@ -47,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   }
 
-  // Find all the dropdowns
-  var x = document.getElementsByClassName("activate-dropdown");
+  // Find all the dropdowns and create an object for each one
+  var x = document.querySelectorAll(".activate-dropdown");
   for (var i = 0; i < x.length; i++ ) {
     var y = new Item(x[i])
     items.push(y)
