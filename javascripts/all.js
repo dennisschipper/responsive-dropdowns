@@ -44,15 +44,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   // Add the click event
-  for (var i = 0; i < items.length; i++) {
-    items[i].button.addEventListener("click", function(event){
+  items.map(function(item){
+    item.button.addEventListener("click", function(event){
       event.preventDefault();
-
       if (this.content.style.height == "0px" || this.content.style.height == false ) {
         showItem(this.content);
       } else {
         hideItem(this.content);
       }
-    })
-  }
+    });
+  })
 });
