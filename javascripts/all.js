@@ -20,23 +20,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   // Toggles class between active/not active
-  function toggleClass(item, new_class){
-    var c = item.className.split(" ");
+  function showItem(item) {
+    height = item.children[0].offsetHeight;
+    item.style.height = height + "px";
+  }
 
-    // Check for an .active class
-    if (c.indexOf(new_class) > -1) {
-      position = c.indexOf(new_class);
-      c[position] = ""
-      item.className = c.join(" ");
-      item.style.height = "0px"
+  function hideItem(item) {
+    item.style.height = "0px";
+  }
 
-    } else {
-      c.push(new_class);
-      item.className = c.join(" ");
-      height = item.children[0].offsetHeight;
-      item.style.height = height + "px";
+  // If a dropdown has a height - set it to nothing
+  function hideAllDropdowns(){
+    for (var i = 0; i < items.length; i++) {
+      hideItem(items[i].dropdown);
     }
-
   }
 
   // Find all the dropdowns and create an object for each one
@@ -50,8 +47,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   for (var i = 0; i < items.length; i++) {
     items[i].button.addEventListener("click", function(event){
       event.preventDefault();
-      toggleClass(this.content, "active")
+
+      if (this.content.style.height == "0px" || this.content.style.height == false ) {
+        showItem(this.content);
+      } else {
+        hideItem(this.content);
+      }
     })
   }
-
 });
